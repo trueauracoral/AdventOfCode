@@ -86,4 +86,4 @@ def part2(data):
     print(f"C02:\t{findC02(data)}")
     print(int(findOxygen(data), 2) * int(findC02(data), 2))
 
-part2(data)
+part1(data)
