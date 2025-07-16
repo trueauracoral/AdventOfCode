@@ -1,4 +1,4 @@
-with open("input.txt", "r") as f:
+with open("sample.txt", "r") as f:
     Data = f.read().splitlines()
 def getCol(matrix, i):
     return [row[i] for row in matrix]
@@ -90,5 +90,6 @@ def part2():
                 SUM+=1
     print(SUM)
 
-part2()
+if (__name__ == '__main__'):
+    part2()
 #part1()
