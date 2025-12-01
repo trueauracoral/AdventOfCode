@@ -1,26 +1,30 @@
-from collections import deque
+from collections import defaultdict
 
-with open("sample.txt", "r") as f:
+with open("input.txt", "r") as f:
     data = list(map(int, f.read().replace("\n","").split(",")))
 
 print(data)
-def day2(data):
-    print(data)
-    def simulate(result):
-        for i in range(len(result)):
-            result[i] -= 1
-            countChildren = 0
-            if result[i] == -1:
-                result[i] = 6
-                countChildren += 1
-            result = result + [8] * countChildren
-        return result
-    for count, i in enumerate(range(256)):
-        data = simulate(data)
-        #print(f"After {count+1} days: {data}")
-        #print(len(data))
-        print(count)
-    print(len(data))
+Data = defaultdict(int)
+for i in data:
+    Data[int(i)] += 1
+def day2(Data):
+    for day in range(256):
+        dataDict = defaultdict(int)
+        for key in Data:
+            if key == 0:
+                dataDict[6] += Data[key]
+                dataDict[8] =  Data[key]
+            else:
+                dataDict[key - 1] += Data[key]
+        print(dataDict)
+        Data = dataDict
+    print(dataDict)
+    answer = 0
+    for key in dataDict:
+        answer += dataDict[key]
+    print(answer)
+
+    #print(len(data))
 
 def day1():
     print(data)
@@ -38,4 +42,4 @@ def day1():
         print(count)
     print(len(data))
 
-day2(data)
+day2(Data)
